@@ -53,7 +53,7 @@ namespace LB4_AnimeTitlesApp
                 return;
 
             //if (formTypeAdd.textBoxTypeName.Text == String.Empty)
-                //MessageBox.Show("Поле не может быть пустым");
+            //MessageBox.Show("Поле не может быть пустым");
 
             AnimeType animeType = new AnimeType();
             animeType.AnimeOfType = formTypeAdd.textBoxTypeName.Text;
@@ -62,6 +62,37 @@ namespace LB4_AnimeTitlesApp
             db.SaveChanges();
 
             MessageBox.Show("Новый объект добавлен");
+
+            this.dataGridViewTypes.DataSource = this.db.AnimeTypes.Local.
+                OrderBy(o => o.AnimeOfType).ToList();
+        }
+
+        private void ButtonTypeUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTypes.SelectedRows.Count == 0)
+                return;
+
+            int index = dataGridViewTypes.SelectedRows[0].Index;
+            short id = 0;
+            bool converted = Int16.TryParse(dataGridViewTypes[0, index].Value.ToString(), out id);
+            if (!converted) 
+                return;
+
+            AnimeType animeType = db.AnimeTypes.Find(id);
+
+            FormTypeAdd formTypeAdd = new();
+
+            formTypeAdd.textBoxTypeName.Text = animeType.AnimeOfType;
+
+            DialogResult result = formTypeAdd.ShowDialog(this);
+
+            if(result == DialogResult.Cancel)
+                return;
+
+            animeType.AnimeOfType = formTypeAdd.textBoxTypeName.Text;
+
+            db.SaveChanges();
+            MessageBox.Show("Объект обновлен");
 
             this.dataGridViewTypes.DataSource = this.db.AnimeTypes.Local.
                 OrderBy(o => o.AnimeOfType).ToList();
