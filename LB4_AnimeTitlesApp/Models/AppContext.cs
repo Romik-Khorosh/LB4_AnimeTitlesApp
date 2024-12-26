@@ -58,17 +58,17 @@ public partial class AppContext : DbContext
                 .HasColumnName("titleName");
             entity.Property(e => e.YearOfRelese).HasColumnName("yearOfRelese");
 
-            entity.HasOne(d => d.IdAnimeTypeNavigation).WithMany(p => p.AnimeTitles)
+            entity.HasOne(d => d.AnimeType).WithMany(p => p.AnimeTitles)
                 .HasForeignKey(d => d.IdAnimeType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_titles_types");
 
-            entity.HasOne(d => d.IdGenreNavigation).WithMany(p => p.AnimeTitles)
+            entity.HasOne(d => d.Genre).WithMany(p => p.AnimeTitles)
                 .HasForeignKey(d => d.IdGenre)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_titles_genres");
 
-            entity.HasOne(d => d.IdModeratorNavigation).WithMany(p => p.AnimeTitles)
+            entity.HasOne(d => d.User).WithMany(p => p.AnimeTitles)
                 .HasForeignKey(d => d.IdModerator)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_titles_users");
