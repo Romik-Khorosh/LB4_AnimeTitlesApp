@@ -60,6 +60,7 @@
             buttonTypeAdd.TabIndex = 0;
             buttonTypeAdd.Text = "Добавить";
             buttonTypeAdd.UseVisualStyleBackColor = true;
+            buttonTypeAdd.Click += ButtonTypeAdd_Click;
             // 
             // buttonTypeUpdate
             // 
@@ -115,7 +116,6 @@
             Margin = new Padding(5);
             Name = "FormTypes";
             Text = "Типы аниме";
-            Load += FormTypes_Load;
             flowLayoutPanelTop.ResumeLayout(false);
             panelFill.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewTypes).EndInit();
