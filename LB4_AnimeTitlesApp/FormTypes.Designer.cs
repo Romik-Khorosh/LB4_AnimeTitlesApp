@@ -80,6 +80,7 @@
             buttonTypeDelete.TabIndex = 2;
             buttonTypeDelete.Text = "Удалить";
             buttonTypeDelete.UseVisualStyleBackColor = true;
+            buttonTypeDelete.Click += ButtonTypeDelete_Click;
             // 
             // panelFill
             // 
@@ -117,6 +118,7 @@
             Margin = new Padding(5);
             Name = "FormTypes";
             Text = "Типы аниме";
+            WindowState = FormWindowState.Maximized;
             flowLayoutPanelTop.ResumeLayout(false);
             panelFill.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewTypes).EndInit();
